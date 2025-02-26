@@ -7,22 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26BA04732D6F789500A80BB3 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 26BA04722D6F789500A80BB3 /* GoogleGenerativeAI */; };
+		26BA04752D6F858900A80BB3 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 26BA04742D6F858900A80BB3 /* Secrets.xcconfig */; };
 		26D71EBE2D6F464C007861D4 /* pAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D71EBD2D6F464C007861D4 /* pAIApp.swift */; };
-		26D71EC02D6F464C007861D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D71EBF2D6F464C007861D4 /* ContentView.swift */; };
+		26D71EC02D6F464C007861D4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D71EBF2D6F464C007861D4 /* HomeView.swift */; };
 		26D71EC22D6F464E007861D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D71EC12D6F464E007861D4 /* Assets.xcassets */; };
 		26D71EC52D6F464E007861D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D71EC42D6F464E007861D4 /* Preview Assets.xcassets */; };
 		26D71ECC2D6F4776007861D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26D71ECB2D6F4776007861D4 /* GoogleService-Info.plist */; };
 		26D71ECF2D6F4B1A007861D4 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 26D71ECE2D6F4B1A007861D4 /* FirebaseCore */; };
 		26D71ED12D6F4B1A007861D4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 26D71ED02D6F4B1A007861D4 /* FirebaseFirestore */; };
+		26D71ED32D6F5714007861D4 /* MeetingRoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D71ED22D6F5714007861D4 /* MeetingRoomsViewModel.swift */; };
+		26D71ED52D6F5B10007861D4 /* RoomDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D71ED42D6F5B10007861D4 /* RoomDetailsView.swift */; };
+		26D71EDB2D6F66D7007861D4 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = 26D71EDA2D6F66D7007861D4 /* SwiftSpeech */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26BA04742D6F858900A80BB3 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		26D71EBA2D6F464C007861D4 /* pAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D71EBD2D6F464C007861D4 /* pAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pAIApp.swift; sourceTree = "<group>"; };
-		26D71EBF2D6F464C007861D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		26D71EBF2D6F464C007861D4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		26D71EC12D6F464E007861D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26D71EC42D6F464E007861D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		26D71ECB2D6F4776007861D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		26D71ED22D6F5714007861D4 /* MeetingRoomsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRoomsViewModel.swift; sourceTree = "<group>"; };
+		26D71ED42D6F5B10007861D4 /* RoomDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,7 +39,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				26D71ECF2D6F4B1A007861D4 /* FirebaseCore in Frameworks */,
+				26D71EDB2D6F66D7007861D4 /* SwiftSpeech in Frameworks */,
 				26D71ED12D6F4B1A007861D4 /* FirebaseFirestore in Frameworks */,
+				26BA04732D6F789500A80BB3 /* GoogleGenerativeAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,9 +69,12 @@
 			children = (
 				26D71ECB2D6F4776007861D4 /* GoogleService-Info.plist */,
 				26D71EBD2D6F464C007861D4 /* pAIApp.swift */,
-				26D71EBF2D6F464C007861D4 /* ContentView.swift */,
+				26D71ED22D6F5714007861D4 /* MeetingRoomsViewModel.swift */,
+				26D71EBF2D6F464C007861D4 /* HomeView.swift */,
+				26D71ED42D6F5B10007861D4 /* RoomDetailsView.swift */,
 				26D71EC12D6F464E007861D4 /* Assets.xcassets */,
 				26D71EC32D6F464E007861D4 /* Preview Content */,
+				26BA04742D6F858900A80BB3 /* Secrets.xcconfig */,
 			);
 			path = pAI;
 			sourceTree = "<group>";
@@ -93,6 +106,8 @@
 			packageProductDependencies = (
 				26D71ECE2D6F4B1A007861D4 /* FirebaseCore */,
 				26D71ED02D6F4B1A007861D4 /* FirebaseFirestore */,
+				26D71EDA2D6F66D7007861D4 /* SwiftSpeech */,
+				26BA04722D6F789500A80BB3 /* GoogleGenerativeAI */,
 			);
 			productName = pAI;
 			productReference = 26D71EBA2D6F464C007861D4 /* pAI.app */;
@@ -124,6 +139,8 @@
 			mainGroup = 26D71EB12D6F464C007861D4;
 			packageReferences = (
 				26D71ECD2D6F4B1A007861D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				26D71ED92D6F66D7007861D4 /* XCRemoteSwiftPackageReference "SwiftSpeech" */,
+				26BA04712D6F789500A80BB3 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 			);
 			productRefGroup = 26D71EBB2D6F464C007861D4 /* Products */;
 			projectDirPath = "";
@@ -139,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BA04752D6F858900A80BB3 /* Secrets.xcconfig in Resources */,
 				26D71EC52D6F464E007861D4 /* Preview Assets.xcassets in Resources */,
 				26D71EC22D6F464E007861D4 /* Assets.xcassets in Resources */,
 				26D71ECC2D6F4776007861D4 /* GoogleService-Info.plist in Resources */,
@@ -152,7 +170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26D71EC02D6F464C007861D4 /* ContentView.swift in Sources */,
+				26D71EC02D6F464C007861D4 /* HomeView.swift in Sources */,
+				26D71ED32D6F5714007861D4 /* MeetingRoomsViewModel.swift in Sources */,
+				26D71ED52D6F5B10007861D4 /* RoomDetailsView.swift in Sources */,
 				26D71EBE2D6F464C007861D4 /* pAIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +182,7 @@
 /* Begin XCBuildConfiguration section */
 		26D71EC62D6F464E007861D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26BA04742D6F858900A80BB3 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -225,6 +246,7 @@
 		};
 		26D71EC72D6F464E007861D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26BA04742D6F858900A80BB3 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -281,6 +303,7 @@
 		};
 		26D71EC92D6F464E007861D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26BA04742D6F858900A80BB3 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -289,7 +312,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"pAI/Preview Content\"";
 				DEVELOPMENT_TEAM = 5X4JL3QJTX;
 				ENABLE_PREVIEWS = YES;
+				GEMINI_API_KEY = "$(GEMINI_API_KEY)";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = pAI/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone access for speech input";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Allow speech recognition for transcribing your speech";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -310,6 +337,7 @@
 		};
 		26D71ECA2D6F464E007861D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26BA04742D6F858900A80BB3 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -318,7 +346,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"pAI/Preview Content\"";
 				DEVELOPMENT_TEAM = 5X4JL3QJTX;
 				ENABLE_PREVIEWS = YES;
+				GEMINI_API_KEY = "$(GEMINI_API_KEY)";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = pAI/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone access for speech input";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Allow speech recognition for transcribing your speech";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -361,6 +393,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		26BA04712D6F789500A80BB3 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
 		26D71ECD2D6F4B1A007861D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -369,9 +409,22 @@
 				minimumVersion = 11.9.0;
 			};
 		};
+		26D71ED92D6F66D7007861D4 /* XCRemoteSwiftPackageReference "SwiftSpeech" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cay-Zhang/SwiftSpeech";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		26BA04722D6F789500A80BB3 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26BA04712D6F789500A80BB3 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
 		26D71ECE2D6F4B1A007861D4 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 26D71ECD2D6F4B1A007861D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -381,6 +434,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 26D71ECD2D6F4B1A007861D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		26D71EDA2D6F66D7007861D4 /* SwiftSpeech */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26D71ED92D6F66D7007861D4 /* XCRemoteSwiftPackageReference "SwiftSpeech" */;
+			productName = SwiftSpeech;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
