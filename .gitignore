@@ -27,3 +27,4 @@ DerivedData/
 
 # Environment Variables (Secrets)
 .env
+Secrets.xcconfig
