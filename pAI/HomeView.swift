@@ -78,22 +78,36 @@ struct HomeView: View {
             \(meetingRoomsData)
         
             ### Instructions:
-            - Respond in a short, natural, and helpful manner.
-            - If multiple rooms are available, suggest the most **suitable** one based on capacity, location, and time.
-            - If no rooms are available, let the user know politely and suggest alternative times if possible.
-            - Avoid repeating information unnecessarily.
-        
-            ### Example Responses:
-            - "Room A is a great choice for your meeting at 2 PM. It’s spacious and located nearby."
-            - "Room C is available at 3 PM and fits your team perfectly."
-            - "Unfortunately, no rooms are free at 2 PM, but Room B is open at 2:30 PM if that works."
+            - Find the most **suitable** meeting room based on the user's request based on (availability > capacity > time > location).
+            - If the requested time is **not available**, book another suitable room else the closest nearest time and **briefly explain the change to the user**.
+            - If no rooms are available at any time, respond politely.
+            - Use a natural tone but keep it relatively brief.
+            - Respond in **this exact JSON format**:
+            ```json
+            {
+                "room": "Room A",
+                "time": "14:00",
+                "message": "[your response here]"
+            }
+            ```
         """
-        
         
         do {
             let response = try await model.generateContent(prompt)
-            DispatchQueue.main.async {
-                aiResponse = response.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "No response received"
+            let aiText = response.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "{}"
+            
+            // Parse JSON response from Gemini
+            if let (roomName, timeSlot, userMessage) = viewModel.extractRoomTimeAndMessage(from: aiText) {
+                DispatchQueue.main.async {
+                    aiResponse = userMessage
+                }
+                if roomName != "None" {
+                    await viewModel.bookMeetingRoom(roomId: roomName, timeSlot: timeSlot)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    aiResponse = "No available rooms found."
+                }
             }
         } catch {
             DispatchQueue.main.async {
@@ -101,6 +115,7 @@ struct HomeView: View {
             }
         }
     }
+    
 }
 
 #Preview {

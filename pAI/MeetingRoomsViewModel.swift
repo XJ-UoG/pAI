@@ -76,6 +76,54 @@ class MeetingRoomsViewModel: ObservableObject {
         }
     }
     
+    func bookMeetingRoom(roomId: String, timeSlot: String) async {
+        let db = Firestore.firestore()
+        let roomRef = db.collection("meetingRooms").document(roomId)
+        
+        do {
+            let snapshot = try await roomRef.getDocument()
+            if let data = snapshot.data(), var availability = data["availability"] as? [String],
+               let index = availability.firstIndex(of: timeSlot) {
+                availability.remove(at: index)
+                try await roomRef.updateData(["availability": availability])
+            }
+        } catch {
+            DispatchQueue.main.async {
+                print("\(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func extractRoomTimeAndMessage(from responseText: String) -> (String, String, String)? {
+        // Use regex to extract the JSON block
+        let pattern = #"\{[\s\S]*?\}"#  // Matches the first valid JSON object
+        guard let regex = try? NSRegularExpression(pattern: pattern),
+              let match = regex.firstMatch(in: responseText, range: NSRange(responseText.startIndex..., in: responseText)),
+              let range = Range(match.range, in: responseText) else {
+            print("No JSON block found in AI response")
+            return nil
+        }
+        
+        let jsonString = String(responseText[range])
+        
+        // Convert extracted JSON string into Data
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            print("Failed to convert extracted JSON to Data")
+            return nil
+        }
+        
+        do {
+            if let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: String],
+               let room = json["room"], let time = json["time"], let message = json["message"] {
+                return (room, time, message)
+            }
+        } catch {
+            print("JSON Parsing Error: \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
+    
     
     func generateTimeSlots() -> [String] {
         let startHour = 9
