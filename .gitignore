@@ -1,0 +1,29 @@
+# Xcode project files
+.DS_Store
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Firebase configuration
+GoogleService-Info.plist
+
+# Swift Package Manager (SPM) dependencies
+/.swiftpm/
+/.build/
+
+# Derived Data & Temporary Files
+DerivedData/
+*.log
+*.swp
+*.swo
+*.lock
+
+# Archives
+*.ipa
+*.xcarchive
+
+# Environment Variables (Secrets)
+.env
