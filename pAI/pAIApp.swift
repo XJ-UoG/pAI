@@ -21,11 +21,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct pAIApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject private var viewModel = PAIViewModel()
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 HomeView()
+                    .environmentObject(viewModel)
             }
         }
     }

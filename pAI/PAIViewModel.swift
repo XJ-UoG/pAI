@@ -1,5 +1,5 @@
 //
-//  MeetingRoomViewModel.swift
+//  HomeViewModel.swift
 //  pAI
 //
 //  Created by Tan Xin Jie on 26/2/25.
@@ -7,9 +7,12 @@
 
 import SwiftUI
 import FirebaseFirestore
+import GoogleGenerativeAI
 
-class MeetingRoomsViewModel: ObservableObject {
+class PAIViewModel: ObservableObject {
     @Published var rooms: [MeetingRoom] = []
+    @Published var response: String = "Ask me about available meeting rooms..."
+    
     private var db = Firestore.firestore()
     
     init() {
@@ -94,8 +97,70 @@ class MeetingRoomsViewModel: ObservableObject {
         }
     }
     
+    func processUserRequest(_ input: String) async {
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "GEMINI_KEY") as? String else {
+            fatalError("Missing GEMINI_KEY")
+        }
+        let model = GenerativeModel(name: "gemini-1.5-flash", apiKey: apiKey)
+        
+        let availableRooms = rooms
+            .map { "\($0.name) (\($0.location)) (\($0.capacity) people), available at \($0.availability.joined(separator: ", "))" }
+            .joined(separator: "\n")
+        
+        let meetingRoomsData = availableRooms.isEmpty
+        ? "There are currently no available meeting rooms."
+        : "Here is the current meeting room availability:\n\(availableRooms)"
+        
+        let prompt = """
+            You are an intelligent office assistant helping users find the most suitable meeting room.
+        
+            ### User Request:
+            "\(input)"
+        
+            ### Available Rooms:
+            \(meetingRoomsData)
+        
+            ### Instructions:
+            - Find the most **suitable** meeting room based on the user's request based on (availability > capacity > time > location).
+            - If the requested time is **not available**, book another suitable room **briefly explain the change to the user**.
+            - If no rooms are available that fits the user's requests, respond politely and suggest another time.
+            - Use a natural tone but keep it relatively brief.
+            - Respond in **this exact JSON format**:
+            ```json
+            {
+                "room": "Room A",
+                "time": "14:00",
+                "message": "[your response here]"
+            }
+            ```
+        """
+        
+        do {
+            let response = try await model.generateContent(prompt)
+            let incoming = response.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "{}"
+            
+            // Parse JSON response from Gemini
+            if let (roomName, timeSlot, userMessage) = extractRoomTimeAndMessage(from: incoming) {
+                DispatchQueue.main.async {
+                    self.response = userMessage
+                }
+                if roomName != "None" {
+                    await bookMeetingRoom(roomId: roomName, timeSlot: timeSlot)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.response = "No available rooms found."
+                }
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.response = "Error: \(error.localizedDescription)"
+            }
+        }
+    }
+    
     func extractRoomTimeAndMessage(from responseText: String) -> (String, String, String)? {
-        // Use regex to extract the JSON block
+
         let pattern = #"\{[\s\S]*?\}"#  // Matches the first valid JSON object
         guard let regex = try? NSRegularExpression(pattern: pattern),
               let match = regex.firstMatch(in: responseText, range: NSRange(responseText.startIndex..., in: responseText)),
